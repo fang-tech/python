@@ -1,4 +1,4 @@
-# Python 学习 day 01
+# Python基础zhi'shi
 
 ## 简单的IO 
 ```python
@@ -92,13 +92,13 @@ python的内存管理是自动的主要涉及以下几个方面
         1. 引用计数 :   
             ```python
             import sys
-
+              
             a = [1, 2, 3]
             print(sys.getrefcount(a) - 1)  # 输出：1
-
+              
             b = a  # 增加引用
             print(sys.getrefcount(a) - 1)  # 输出：2
-
+              
             del b  # 减少引用
             print(sys.getrefcount(a) - 1)  # 输出：1
            ```
@@ -107,42 +107,41 @@ python的内存管理是自动的主要涉及以下几个方面
             class Node:
                 def __init__(self):
                     self.ref = None
-
+           
             a = Node()
             b = Node()
             a.ref = b
             b.ref = a
-
+           
             # a 和 b 相互引用，但外部没有引用它们
             # 需要循环垃圾收集器来回收
-           ``` 
+           ```
         3. 手动触发垃圾回收 :
             ```python
             import gc
-
+            
             gc.collect()  # 手动触发垃圾回收
             ```
             4. 内存使用情况 :
             ```python
             import psutil
             import os
-
+            
             process = psutil.Process(os.getpid())
             print(process.memory_info().rss)  # 输出当前进程的内存使用
             ```
         5. 弱应用
             ```python
             import weakref
-
+            
             class Object:
                 pass
-
+            
             obj = Object()
             r = weakref.ref(obj)
-
+            
             print(r() is obj)  # 输出：True
-
+            
             del obj
             print(r() is None)  # 输出：True
             ```
-
